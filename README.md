@@ -1,4 +1,4 @@
-git remote add origin https://github.com/lavithesh/Shopping_Cart.git
+ https://github.com/lavithesh/Shopping_Cart.git
 
 
 
