@@ -1,0 +1,27 @@
+<!-- admin/view-users.hbs -->
+<h1 style="font-style:oblique; text-align:center">All Users <i class="bi bi-people-fill"></i></h1>
+<table class="table table-bordered" id="user" style="background-image: url('/images/c6.jpeg');  background-size: cover; background-position: center;">
+  <thead>
+    <tr>
+      <th style="font-style:italic; ">NO</th>
+      <th style="font-style:italic; ">User ID</th>
+      <th style="font-style:italic; ">Name</th>
+      <th style="font-style:italic; "> <i class="bi bi-envelope-fill"></i> Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>
+      <td>{{@index}}</td>
+      <td>{{this._id}}</td>
+      <td>{{this.Name}}</td>
+      <td>{{this.Email}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<script>
+  $(function () {
+    $('#user').DataTable();
+  });
+</script>

@@ -1,0 +1,35 @@
+<section style="margin: 0 auto; padding: 20px; background-image: url('/images/c6.jpeg'); width: 100%; height: 100%; background-size: cover; background-position: center; ">
+    <h2 style="text-align: center; margin-bottom: 20px; font-style:italic">Order Details <i class="bi bi-clipboard-check"></i></h2>
+    
+    <table style="width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <thead>
+        <tr style="background-color: #f4f4f4;">
+            <th style="padding: 15px; border: 1px solid #ddd; text-align: left;">Date</th>
+            <th style="padding: 15px; border: 1px solid #ddd; text-align: left;">Address</th>
+            <th style="padding: 15px; border: 1px solid #ddd; text-align: left;">Pincode</th>
+            <th style="padding: 15px; border: 1px solid #ddd; text-align: left;">Mobile</th>
+            <th style="padding: 15px; border: 1px solid #ddd; text-align: left;">Total Amount</th>
+            <th style="padding: 15px; border: 1px solid #ddd; text-align: left;">Payment Method <i class="bi bi-wallet2"></i> </th>
+            <th style="padding: 15px; border: 1px solid #ddd; text-align: left;">Status</th>
+            <th style="padding: 15px; border: 1px solid #ddd; text-align: left;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each orders}}
+        <tr>
+            <td style="padding: 15px; border: 1px solid #ddd;"> {{this.date}}<i class="bi bi-calendar"></i></td>
+            <td style="padding: 15px; border: 1px solid #ddd;">{{this.deliveryDetails.address}}</td>
+            <td style="padding: 15px; border: 1px solid #ddd;">{{this.deliveryDetails.pincode}}</td>
+            <td style="padding: 15px; border: 1px solid #ddd;">{{this.deliveryDetails.mobile}}</td>
+            <td style="padding: 15px; border: 1px solid #ddd;">Rs. {{this.totalAmount}}</td>
+            <td style="padding: 15px; border: 1px solid #ddd; font-style:italic"> <i class="bi bi-wallet2"></i> {{this.paymentMethod}}</td>
+            <td style="padding: 15px; border: 1px solid #ddd; font-style:italic">{{this.status}}</td>
+            <td style="padding: 15px; border: 1px solid #ddd;">
+                <a href="/view-order-products/{{this._id}}" class="btn btn-primary" style="padding: 5px 10px; text-decoration: none; color: white; background-color: blue; border-radius: 10px 40px;">View Products</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+</section>

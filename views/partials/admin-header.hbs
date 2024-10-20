@@ -1,0 +1,36 @@
+<header style="position: sticky; top: 0; z-index: 1000;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-image: url('/images/c10.jpg'); background-size: cover;">
+        <a class="navbar-brand" style="color: rgb(245, 229, 229); font-style: italic;" href="/admin">Admin Panel  <i class="bi bi-bag-fill"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white" href="/admin/allOrders">All Orders <i class="bi bi-box-fill"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: white;" href="/admin/allUsers">All Users  <i class="bi bi-people-fill"></i></a>
+                </li>
+            </ul>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{#if admin}}
+                    {{admin.Name}}
+                    {{else}}
+                      Admin Account
+                    {{/if}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border-radius: 10px;">
+                    {{#if admin}}
+                    <a class="dropdown-item" href="/admin/adminLogout">Logout</a>
+                    {{else}}
+                    <a class="dropdown-item" href="/admin/adminLogin">Login</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

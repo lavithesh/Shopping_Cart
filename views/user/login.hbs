@@ -1,0 +1,24 @@
+<div class="hi" style="background-image: url('/images/global.jpg'); width: 100%; height: 100vh; background-size: cover; background-position: center;">
+  <div class="col-md-6 m-auto">
+    <div class="container mt-1  pl-5">
+      <h2 class="text-center" style="font-style:italic; color:white">Login</h2>
+      {{#if loginErr}}
+<p style="color: white;">Invalid or wrong password <i class="bi bi-exclamation-circle"></i></p>
+      {{/if}}
+      <form action="/login" method="post">
+  <div class="form-group">
+    <label style="font-style:italic; color:white" >Email address</label>
+    <input type="email" class="form-control" name="Email"   placeholder="Enter email">
+    
+  </div>
+  <div class="form-group">
+    <label style="font-style:italic; color:white">Password</label>
+    <input type="password" class="form-control" name="Password" placeholder="Password">
+  </div>
+ 
+  <a href="/signup">create new account</a>
+  <button type="submit" class="btn btn-primary float-right">Submit</button>
+</form>
+    </div>
+  </div>
+</div>

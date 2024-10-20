@@ -1,0 +1,32 @@
+<h1 class="text-center my-4 " style="font-style: italic; color:rgb(37, 169, 37)">All Orders <i class="bi bi-box2-fill"></i></h1>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover shadow-sm rounded " id="order" style="background-image: url('/images/c8.jpeg'); background-size: cover; background-position: center;">
+    <thead class="thead-dark">
+      <tr>
+        <th style="font-style:italic;">No</th>
+        <th style="font-style:italic;">Order ID</th>
+        <th style="font-style:italic;">User ID</th>
+        <th style="font-style:italic;">Total Amount</th>
+        <th style="font-style:italic;">Payment Status</th>
+        <th style="font-style:italic;">Order Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each orders}}
+      <tr>
+        <td>{{@index}}</td>
+        <td>{{this._id}}</td>
+        <td>{{this.userId}}</td> 
+        <td>{{this.totalAmount}}</td>
+        <td>{{this.paymentMethod}}</td>
+        <td>{{this.status}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<script>
+  $(function () {
+    $('#order').DataTable();
+  });
+</script>
