@@ -23,6 +23,8 @@
 
 ![img alt](https://github.com/lavithesh/Shopping_Cart/blob/main/Screenshot%20(232).png?raw=true)
 
+<h1 style="font-family: Arial;" >Home Page</h1>
+
 ![img alt](https://github.com/lavithesh/Shopping_Cart/blob/main/Screenshot%20(226).png?raw=true)
 
 <h1 align="center">Razorpay integration</h1>
