@@ -16,7 +16,7 @@
 - 📫 How to reach me **lavithesh7@gmail.com**
 
 - ⚡ Fun fact **I am Funny**
-![img alt](https://github.com/lavithesh/FlipGame/blob/master/Screenshot%20(315).png?raw=true)
+![img alt](https://github.com/lavithesh/Shopping_Cart/blob/main/Screenshot%20(232).png?raw=true)
 
 ![img alt](https://github.com/lavithesh/FlipGame/blob/master/Screenshot%20(315).png?raw=true)
 
