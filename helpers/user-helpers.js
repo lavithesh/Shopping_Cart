@@ -1,5 +1,5 @@
 var connectdb = require("../config/connection");
-var collection = require('../config/collections');
+var collection = require('../config/collection');
 const bcrypt = require('bcrypt');
 const { response } = require("express");
 const MongoClient = require('mongodb').MongoClient;
