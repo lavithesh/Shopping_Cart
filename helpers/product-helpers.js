@@ -1,5 +1,5 @@
 const connectdb = require("../config/connection")
-var collection=require('../config/collections')
+var collection=require('../config/collection')
 var ObjectId=require('mongodb').ObjectId
 
 module.exports={
