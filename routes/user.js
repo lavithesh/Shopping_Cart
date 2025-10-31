@@ -38,7 +38,7 @@ if(req.session.user){
     res.render('user/signup')
    })
 
-
+    //signin
    router.post('/sign',  (req,res)=>{
     console.log(req.body)
   userHelpers.doSignup (req.body).then((response)=>{
@@ -49,7 +49,7 @@ if(req.session.user){
   })
   })
 
-
+    //login 
    router.post('/login',(req,res)=>{
     userHelpers.doLogin(req.body).then((response)=>{
       console.log(req.body)
