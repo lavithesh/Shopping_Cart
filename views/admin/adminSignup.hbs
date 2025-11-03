@@ -1,24 +1,29 @@
-<div class="row"></div>
-  <div class="col-md-6 m-auto">
-    <div class="container mt-5  pl-5">
-      <h2 class="text-center"></h2>
-      <form action="/admin/adminSignup" method="post">
-         <div class="form-group"  >
-    <label for="Name">Name</label>
-    <input type="text" class="form-control" name="Name" placeholder="Name">
-  </div>
-  <div class="form-group">
-    <label>Email address</label>
-    <input type="email" class="form-control" name="Email"  placeholder="Enter email">
-  </div>
-  <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" name="Password" placeholder="Password">
-  </div>
- 
-  <a href="/admin/adminLogin">Already have account</a>
-  <button type="submit" class="btn btn-primary float-right">Submit</button>
-</form>
+<section style="background-image: url('/images/c9.jpeg'); background-size: cover; background-position: center; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;">
+  <div class="col-md-6 col-lg-4 bg-light p-4 rounded shadow-lg" style="opacity: 0.95; border-radius: 20px;">
+    <div class="text-center mb-4">
+      <h2 style="font-style: italic; color: #2c3e50;">Admin Signup <i class="bi bi-person-plus-fill"></i></h2>
     </div>
+
+    <form action="/admin/adminSignup" method="post">
+      <div class="form-group">
+        <label for="Name" style="font-style: italic;">Name</label>
+        <input type="text" class="form-control" name="Name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="Email" style="font-style: italic;">Email address</label>
+        <input type="email" class="form-control" name="Email" placeholder="Enter email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="Password" style="font-style: italic;">Password</label>
+        <input type="password" class="form-control" name="Password" placeholder="Enter password" required>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <a href="/admin/adminLogin" style="font-style: italic; color: blue;">Already have an account?</a>
+        <button type="submit" class="btn btn-primary px-4" style="border-radius: 30px;">Submit</button>
+      </div>
+    </form>
   </div>
-</div>
+</section>

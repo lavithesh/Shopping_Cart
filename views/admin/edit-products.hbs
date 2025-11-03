@@ -1,34 +1,55 @@
-<section>
-    <div class="container">
-    <div class="row">
-     <div class="col-md-6">
-        <h2 class="text-center" style="font-style: italic;">Edit product</h2>
+<section style="background-image: url('/images/p7.jpg'); width: 100%; min-height: 100vh; background-size: cover; background-position: center; padding: 40px 0;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 bg-light p-4 rounded shadow" style="border-radius: 20px;">
+        <h2 class="text-center mb-4" style="font-style: italic; color: #333;">Edit Product <i class="bi bi-pencil-square"></i></h2>
+
         <form action="/admin/edit-product/{{product._id}}" method="post" enctype="multipart/form-data">
-            <label for="" >Name</label>
-            <input type="text" style="border-radius: 25px;" name="Name" class="form-control" value="{{product.Name}}">
+          
+          <div class="form-group">
+            <label style="font-style: italic;">Name</label>
+            <input type="text" name="Name" class="form-control" style="border-radius: 15px;" value="{{product.Name}}" required>
+          </div>
 
-            <label for="">Category</label>
-            <input type="text" style="border-radius: 25px;" name="Category" class="form-control" value="{{product.Category}}">
+          <div class="form-group">
+            <label style="font-style: italic;">Category</label>
+            <input type="text" name="Category" class="form-control" style="border-radius: 15px;" value="{{product.Category}}" required>
+          </div>
 
-            <label for="">Price</label>
-            <input type="text" style="border-radius: 25px;" name="Price" class="form-control" value="{{product.Price}}">
-            
-             <label for="">Description</label>
-            <input type="text" style="border-radius: 25px;" name="Description" class="form-control" value="{{product.Description}}">
-           
-            <label for="Image">Image</label>
-            <br>
-            <img src="/product-images/{{product._id}}.png" alt="" width="100px" height="auto" style="border-radius: 50%;" id="imgView" class="pt-3">
-            <input type="file" name="Image" class="form-control" onchange="viewImage(event)" >
-            
-            <button type="submit" class="btn btn-success mt-4" style="border-radius: 40px 10px;">submit</button>
+          <div class="form-group">
+            <label style="font-style: italic;">Price</label>
+            <input type="number" name="Price" class="form-control" style="border-radius: 15px;" value="{{product.Price}}" required>
+          </div>
+
+          <div class="form-group">
+            <label style="font-style: italic;">Description</label>
+            <textarea name="Description" class="form-control" style="border-radius: 15px;" rows="3" required>{{product.Description}}</textarea>
+          </div>
+
+          <div class="form-group">
+            <label style="font-style: italic;">Image</label><br>
+            <img src="/product-images/{{product._id}}.png" 
+                 alt="Product Image" 
+                 id="imgView" 
+                 width="120px" 
+                 height="120px" 
+                 style="border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+            <input type="file" name="Image" class="form-control" style="border-radius: 15px;" onchange="viewImage(event)">
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-success px-4" style="border-radius: 20px;">Submit</button>
+          </div>
+
         </form>
-     </div>
+      </div>
     </div>
-    </div>
+  </div>
 </section>
+
 <script>
-    function viewImage(event){
-        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
-    }
+  function viewImage(event) {
+    const img = document.getElementById('imgView');
+    img.src = URL.createObjectURL(event.target.files[0]);
+  }
 </script>

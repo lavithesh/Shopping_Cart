@@ -1,32 +1,78 @@
-<h1 class="text-center my-4 " style="font-style: italic; color:rgb(37, 169, 37)">All Orders <i class="bi bi-box2-fill"></i></h1>
-<div class="table-responsive">
-  <table class="table table-bordered table-hover shadow-sm rounded " id="order" style="background-image: url('/images/c8.jpeg'); background-size: cover; background-position: center;">
-    <thead class="thead-dark">
-      <tr>
-        <th style="font-style:italic;">No</th>
-        <th style="font-style:italic;">Order ID</th>
-        <th style="font-style:italic;">User ID</th>
-        <th style="font-style:italic;">Total Amount</th>
-        <th style="font-style:italic;">Payment Status</th>
-        <th style="font-style:italic;">Order Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each orders}}
-      <tr>
-        <td>{{@index}}</td>
-        <td>{{this._id}}</td>
-        <td>{{this.userId}}</td> 
-        <td>{{this.totalAmount}}</td>
-        <td>{{this.paymentMethod}}</td>
-        <td>{{this.status}}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</div>
+<section style="min-height: 100vh; background: linear-gradient(to right, #f8f9fa, #e9ecef); padding: 40px 20px;">
+  <div class="container">
+    <h1 class="text-center mb-5" 
+        style="font-style: italic; color: #28a745; font-weight: 700;">
+      All Orders <i class="bi bi-box2-fill"></i>
+    </h1>
+
+    <div class="card shadow-lg border-0 rounded-4" style="overflow: hidden;">
+      <div class="card-body p-4" 
+           style="background: url('/images/c8.jpeg') center/cover no-repeat; background-attachment: fixed;">
+
+        <div class="table-responsive" 
+             style="background-color: rgba(255,255,255,0.92); border-radius: 15px; padding: 15px;">
+          <table id="order" 
+                 class="table table-bordered table-hover align-middle"
+                 style="border-radius: 12px; overflow: hidden;">
+            
+            <thead style="background-color: #007bff; color: white;">
+              <tr>
+                <th style="font-style: italic;">No</th>
+                <th style="font-style: italic;">Order ID</th>
+                <th style="font-style: italic;">User Name</th>
+                <th style="font-style: italic;">Email</th>
+                <th style="font-style: italic;">Total Amount</th>
+                <th style="font-style: italic;">Payment Method</th>
+                <th style="font-style: italic;">Order Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {{#if orders.length}}
+                {{#each orders}}
+                  <tr style="transition: 0.2s; background-color: white;">
+                    <td><strong>{{inc @index}}</strong></td>
+                    <td>{{this._id}}</td>
+                    <td>{{this.userDetails.Name}}</td>
+                    <td>{{this.userDetails.Email}}</td>
+                    <td>₹{{this.totalAmount}}</td>
+                    <td><i class="bi bi-wallet2"></i> {{this.paymentMethod}}</td>
+                    <td>
+                      <span style="
+                        font-weight: 600;
+                        color: {{#if (eq this.status 'Delivered')}}green
+                                {{else if (eq this.status 'Pending')}}#ffc107
+                                {{else if (eq this.status 'Cancelled')}}red
+                                {{else}}#555{{/if}};
+                      ">
+                        {{this.status}}
+                      </span>
+                    </td>
+                  </tr>
+                {{/each}}
+              {{else}}
+                <tr>
+                  <td colspan="7" class="text-center" style="font-style: italic; color: #555;">
+                    No orders found <i class="bi bi-exclamation-circle"></i>
+                  </td>
+                </tr>
+              {{/if}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Table Enhancement Script -->
 <script>
-  $(function () {
-    $('#order').DataTable();
+  $(document).ready(function () {
+    $('#order').DataTable({
+      pageLength: 5,
+      lengthChange: false,
+      order: [[0, 'asc']],
+      language: { search: "Search orders:" }
+    });
   });
 </script>

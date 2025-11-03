@@ -1,36 +1,99 @@
 <header style="position: sticky; top: 0; z-index: 1000;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-image: url('/images/c10.jpg'); background-size: cover;">
-        <a class="navbar-brand" style="color: rgb(245, 229, 229); font-style: italic;" href="/admin">Admin Panel  <i class="bi bi-bag-fill"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+  <nav 
+    class="navbar navbar-expand-lg navbar-dark" 
+    style="
+      background: linear-gradient(
+        rgba(0, 0, 0, 0.75), 
+        rgba(0, 0, 0, 0.75)
+      ), 
+      url('/images/c10.jpg') center/cover no-repeat;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    "
+  >
+    <!-- Brand -->
+    <a 
+      class="navbar-brand fw-bold" 
+      href="/admin"
+      style="color: #fff; font-style: italic; letter-spacing: 1px;"
+    >
+      Admin Panel <i class="bi bi-gear-wide-connected"></i>
+    </a>
+
+    <!-- Toggler -->
+    <button 
+      class="navbar-toggler border-0" 
+      type="button" 
+      data-toggle="collapse" 
+      data-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Items -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a 
+            class="nav-link" 
+            href="/admin/allOrders" 
+            style="color: #f8f9fa; font-style: italic; transition: 0.3s;"
+            onmouseover="this.style.color='#ffc107'"
+            onmouseout="this.style.color='#f8f9fa'"
+          >
+            All Orders <i class="bi bi-box-seam"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a 
+            class="nav-link" 
+            href="/admin/allUsers" 
+            style="color: #f8f9fa; font-style: italic; transition: 0.3s;"
+            onmouseover="this.style.color='#ffc107'"
+            onmouseout="this.style.color='#f8f9fa'"
+          >
+            All Users <i class="bi bi-people-fill"></i>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right Side Dropdown -->
+      <div class="dropdown ml-auto">
+        <button 
+          class="btn btn-outline-light dropdown-toggle" 
+          type="button" 
+          id="dropdownMenuButton" 
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false"
+          style="font-style: italic; border-radius: 10px 30px; padding: 8px 16px;"
+        >
+          {{#if admin}}
+            <i class="bi bi-person-gear"></i> {{admin.Name}}
+          {{else}}
+            <i class="bi bi-person-circle"></i> Admin Account
+          {{/if}}
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" style="color:white" href="/admin/allOrders">All Orders <i class="bi bi-box-fill"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: white;" href="/admin/allUsers">All Users  <i class="bi bi-people-fill"></i></a>
-                </li>
-            </ul>
-
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{#if admin}}
-                    {{admin.Name}}
-                    {{else}}
-                      Admin Account
-                    {{/if}}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border-radius: 10px;">
-                    {{#if admin}}
-                    <a class="dropdown-item" href="/admin/adminLogout">Logout</a>
-                    {{else}}
-                    <a class="dropdown-item" href="/admin/adminLogin">Login</a>
-                    {{/if}}
-                </div>
-            </div>
+        <div 
+          class="dropdown-menu dropdown-menu-right shadow-lg" 
+          aria-labelledby="dropdownMenuButton"
+          style="border-radius: 12px; min-width: 150px;"
+        >
+          {{#if admin}}
+            <a class="dropdown-item" href="/admin/adminLogout">
+              <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+          {{else}}
+            <a class="dropdown-item" href="/admin/adminLogin">
+              <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+          {{/if}}
         </div>
-    </nav>
+      </div>
+    </div>
+  </nav>
 </header>

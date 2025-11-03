@@ -1,4 +1,12 @@
-<section style="background-image: url('/images/p6.jpg'); width: 100%; height: 100vh; background-size: cover; background-position: center;">
+<section 
+  style="
+    background: url('/images/p6.jpg') no-repeat center center/cover;
+    width: 100%;
+    min-height: 100vh;  /* 👈 not fixed height */
+    background-attachment: fixed; /* Optional for a parallax-like effect */
+    padding: 40px 0;
+  "
+>
     <div class="container mt-1">
         <div class="row">
         {{#each products}}

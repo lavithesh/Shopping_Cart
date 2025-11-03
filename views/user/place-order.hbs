@@ -1,124 +1,137 @@
-<section >
-  <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
-    <h2 style="text-align: center; margin-bottom: 30px; font-style:italic; ">Enter Delivery Details     <i class="bi bi-box2-heart-fill"></i></h2> 
-    
-    <div style="display: flex; justify-content: space-between;">
-      <form id="checkout-form" style="width: 60%; margin-right: 5%; " style="border-radius: 25px;
-  background: #cdd5c3;">
+<section 
+  style="
+    background: url('/images/p6.jpg') no-repeat center center/cover;
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 0;
+  "
+>
+  <div style="max-width: 800px; margin: 0 auto; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.15);">
+    <h2 style="text-align: center; margin-bottom: 30px; font-style: italic;">
+      Enter Delivery Details <i class="bi bi-box2-heart-fill"></i>
+    </h2>
+
+    <form id="checkout-form">
       <div style="margin-bottom: 15px;">
-  <label for="address" style="display: block; margin-bottom: 5px;">Address</label>
-  <input type="text" id="address" name="address" style="width: 100%; padding: 10px; box-sizing: border-box; border-radius: 10px;" required>
-</div>
+        <label for="address" style="display: block; margin-bottom: 5px;">Address</label>
+        <input type="text" id="address" name="address"
+          style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;" required>
+      </div>
 
+      <div style="margin-bottom: 15px;">
+        <label for="pincode" style="display: block; margin-bottom: 5px;">Pincode</label>
+        <input type="text" id="pincode" name="pincode"
+          style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;" required>
+      </div>
 
-        <div style="margin-bottom: 15px;">
-          <label for="pincode" style="display: block; margin-bottom: 5px;">Pincode</label>
-          <input type="text" id="pincode" name="pincode" style="width: 100%; padding: 10px; box-sizing: border-box; border-radius :10px;" required>
+      <div style="margin-bottom: 15px;">
+        <label for="mobile" style="display: block; margin-bottom: 5px;">Mobile</label>
+        <input type="text" id="mobile" name="mobile"
+          style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;" required>
+        <input type="hidden" name="userId" value="{{user._id}}">
+      </div>
+
+      <div style="width: 100%; border: 1px solid #9d4040; padding: 15px; margin-bottom: 20px; border-radius: 30px;">
+        <h4 style="margin-bottom: 20px; font-style: italic;">Total Amount: Rs.{{total}}</h4>
+        <p style="margin-bottom: 15px;">Payment Method</p>
+
+        <div style="margin-bottom: 10px;">
+          <input type="radio" id="cod" name="payment-method" value="COD" checked>
+          <label for="cod">Cash On Delivery <i class="bi bi-cash"></i></label>
         </div>
 
-        <div style="margin-bottom: 15px;">
-          <label for="mobile" style="display: block; margin-bottom: 5px;">Mobile</label>
-          <input type="text" id="mobile" name="mobile" style="width: 100%; padding: 10px; box-sizing: border-box; border-radius :10px;" required>
-          <input type="hidden" name="userId" value="{{user._id}}">
+        <div>
+          <input type="radio" id="onlinePayment" name="payment-method" value="Online Payment">
+          <label for="onlinePayment">Online Payment <i class="bi bi-wallet2"></i></label>
         </div>
+      </div>
 
-        <div style="width: 100%; border: 1px solid #9d4040; padding: 15px; box-sizing: border-box; margin-bottom: 20px; border-radius:60px 70px 40px 100px;">
-          <h4 style="margin-bottom: 20px; font-style:italic">Total Amount: Rs.{{total}}</h4>
-          <p style="margin-bottom: 15px; font-style:inherit">Payment method</p>
-
-          <div style="margin-bottom: 10px;">
-            <input type="radio" id="cod" name="payment-method" value="COD" checked>
-            <label for="cod">Cash On Delivery  <i class="bi bi-cash"></i></label>
-          </div>
-
-          <div style="margin-bottom: 20px;">
-            <input type="radio" id="onlinePayment" name="payment-method" value="Online Payment">
-            <label for="onlinePayment">Online Payment <i class="bi bi-wallet2"></i></label>
-          </div>
-        </div>
-
-        <button type="submit" style="display: block; width: 100%; padding: 10px; background-color: blue; color: white; border: none; cursor: pointer;">Checkout</button>
-      </form>
-    </div>
+      <button type="submit"
+        style="display: block; width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; transition: 0.3s;">
+        Checkout
+      </button>
+    </form>
   </div>
 </section>
 
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-  // Submit the checkout form via AJAX
-  $("#checkout-form").submit(function(e) {
+  // ✅ Handle checkout form submission
+  $("#checkout-form").submit(function (e) {
     e.preventDefault();
+
     $.ajax({
-      url: '/place-order',
-      method: 'POST',
+      url: "/place-order",
+      method: "POST",
       data: $(this).serialize(),
-      success: function(response) {
+      success: function (response) {
         if (response.codSuccess) {
-          // If the payment method is COD, redirect to the order success page
-          location.href = '/order-success';
-        } else {
-          // If the payment method is online (Razorpay), initiate the Razorpay payment process
+          window.location.href = "/order-success";
+        } else if (response.razorpayOrder) {
           razorpayPayment(response.razorpayOrder, response.orderId);
+        } else {
+          alert("Something went wrong while placing the order!");
         }
       },
-      error: function(xhr, status, error) {
-        alert('Failed to place order.');
-        console.error('An error occurred:', error);
-      }
+      error: function (xhr, status, error) {
+        console.error("❌ Order placement failed:", error);
+        alert("Failed to place order. Please try again.");
+      },
     });
   });
 
-  // Function to initiate Razorpay payment
+  // ✅ Razorpay Payment
   function razorpayPayment(order, mongoOrderId) {
-  const options = {
-    key: 'rzp_test_tMxLVHtDhuJATA', // Use your Razorpay API key
-    amount: order.amount,
-    currency: 'INR',
-    name: 'Your Store',
-    description: 'Order Payment',
-    order_id: order.id, // Razorpay order ID
-    handler: function (response) {
-      // Pass the MongoDB order ID along with the payment details
-      verifyPayment(response, mongoOrderId);
-    },
-    prefill: {
-      name: '{{user.name}}',
-      email: '{{user.email}}',
-      contact: '{{user.mobile}}'
-    },
-    theme: {
-      color: '#F37254'
-    },
-  };
+    const options = {
+      key: "{{RAZORPAY_KEY_ID}}", // passed from backend
+      amount: order.amount,
+      currency: "INR",
+      name: "Shopping Cart",
+      description: "Order Payment",
+      order_id: order.id,
+      handler: function (response) {
+        verifyPayment(response, mongoOrderId);
+      },
+      prefill: {
+        name: "{{user.Name}}",
+        email: "{{user.Email}}",
+        contact: "{{user.Mobile}}",
+      },
+      theme: {
+        color: "#007bff",
+      },
+    };
 
-  const rzp = new Razorpay(options);
-  rzp.open();
-}
-   
-  
+    const rzp = new Razorpay(options);
+    rzp.on("payment.failed", function (response) {
+      alert("❌ Payment failed! Please try again.");
+      console.error(response.error);
+    });
+    rzp.open();
+  }
 
-  // Function to verify payment after successful transaction
-  function verifyPayment(response, mongoOrderId) {
-  $.ajax({
-    url: '/verify-payment',
-    method: 'POST',
-    data: {
-      razorpay_payment_id: response.razorpay_payment_id,
-      razorpay_order_id: response.razorpay_order_id,
-      razorpay_signature: response.razorpay_signature,
-      mongo_order_id: mongoOrderId // Include MongoDB order ID here
-    },
-    success: function(response) {
-      if (response.status) {
-        // Redirect to order success page
-        window.location.href = '/order-success';
-      } else {
-        alert('Payment verification failed');
-      }
-    },
-    error: function(error) {
-      console.log('Error verifying payment:', error);
-      alert('Payment verification failed');
-    }
-  });
-}
+  // ✅ Verify Payment
+  function verifyPayment(payment, mongoOrderId) {
+    $.ajax({
+      url: "/verify-payment",
+      method: "POST",
+      data: {
+        razorpay_payment_id: payment.razorpay_payment_id,
+        razorpay_order_id: payment.razorpay_order_id,
+        razorpay_signature: payment.razorpay_signature,
+        mongo_order_id: mongoOrderId,
+      },
+      success: function (response) {
+        if (response.status) {
+          window.location.href = "/order-success";
+        } else {
+          alert("Payment verification failed!");
+        }
+      },
+      error: function (error) {
+        console.error("Error verifying payment:", error);
+        alert("Payment verification failed!");
+      },
+    });
+  }
 </script>

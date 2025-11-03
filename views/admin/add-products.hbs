@@ -1,27 +1,40 @@
-<section>
-    <div class="container">
-    <div class="row">
-     <div class="col-md-6">
-        <h2 class="text-center" style="font-style: italic; ">Add products</h2>
-        <form action="/admin/add-product" method="post" enctype="multipart/form-data">
-            <label for="">Name</label>
-            <input type="text" name="Name" class="form-control">
+<section style="background-image: url('/images/p5.jpg'); background-size: cover; background-position: center; width: 100%; min-height: 100vh; padding: 60px 0;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="p-4 shadow-lg rounded" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px;">
+          <h2 class="text-center mb-4" style="font-style: italic; color: #2c3e50;">Add Product <i class="bi bi-plus-circle-fill"></i></h2>
 
-            <label for="">Category</label>
-            <input type="text" name="Category" class="form-control">
+          <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+            <div class="form-group mb-3">
+              <label style="font-style: italic;">Name</label>
+              <input type="text" name="Name" class="form-control" required style="border-radius: 10px;">
+            </div>
 
-            <label for="">Price</label>
-            <input type="text" name="Price" class="form-control">
-            
-             <label for="">Description</label>
-            <input type="text" name="Description" class="form-control">
-           
-            <label for="Image">Image</label>
-            <input type="file" name="Image" class="form-control">
-            
-            <button type="submit" class="btn btn-success mt-4" style="border-radius: 40px 10px;">submit</button>
-        </form>
-     </div>
+            <div class="form-group mb-3">
+              <label style="font-style: italic;">Category</label>
+              <input type="text" name="Category" class="form-control" required style="border-radius: 10px;">
+            </div>
+
+            <div class="form-group mb-3">
+              <label style="font-style: italic;">Price</label>
+              <input type="number" name="Price" class="form-control" required min="0" style="border-radius: 10px;">
+            </div>
+
+            <div class="form-group mb-3">
+              <label style="font-style: italic;">Description</label>
+              <textarea name="Description" class="form-control" rows="3" required style="border-radius: 10px;"></textarea>
+            </div>
+
+            <div class="form-group mb-4">
+              <label style="font-style: italic;">Product Image</label>
+              <input type="file" name="Image" class="form-control" required style="border-radius: 10px;">
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block" style="border-radius: 10px; font-style: italic;">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </section>

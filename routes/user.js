@@ -1,203 +1,220 @@
-var express = require('express');
+// routes/user.js
+require("dotenv").config();
+var express = require("express");
 var router = express.Router();
-var productHelpers=require('../helpers/product-helpers');
-var userHelpers=require('../helpers/user-helpers');
-const session = require('express-session');
-const verifylogin=((req,res,next)=>{
-  if(req.session.userLoggedIn){
-    next()
-  }else{
-    res.redirect('/login')
-  }
-})
-/* GET home page. */
-router.get('/', async function (req, res, next) {
-let user=req.session.user
-console.log(user);
-let cartCount=null;
-if(req.session.user){
- cartCount=await userHelpers.getCartCount(req.session.user._id)
-}
-  productHelpers.getAllProducts().then((products)=>{
-    
-    res.render('index',{products,user,cartCount});
-  });
-   })
+var productHelpers = require("../helpers/product-helpers");
+var userHelpers = require("../helpers/user-helpers");
+const session = require("express-session");
 
-   router.get('/login',(req,res)=>{
-    if(req.session.userLoggedIn){
-      res.redirect('/')
-    }else{
-    res.render('user/login',{"loginErr":req.session.userErr})
-    req.session.userErr=false
-    }
-   })
+/* -------------------- MIDDLEWARE -------------------- */
+const verifyLogin = (req, res, next) => {
+  if (req.session.userLoggedIn) next();
+  else res.redirect("/login");
+};
 
-   
-   router.get('/signup',(req,res)=>{
-    res.render('user/signup')
-   })
-
-    //signin
-   router.post('/sign',  (req,res)=>{
-    console.log(req.body)
-  userHelpers.doSignup (req.body).then((response)=>{
-   
-    req.session.userLoggedIn=true
-    req.session.user=response
-    res.redirect('/')
-  })
-  })
-
-    //login 
-   router.post('/login',(req,res)=>{
-    userHelpers.doLogin(req.body).then((response)=>{
-      console.log(req.body)
-      if(response.status){
-        req.session.userLoggedIn=true
-        req.session.user=response.user
-        res.redirect('/')
-      }else{
-        req.session.userErr=true
-        res.redirect('/login')
-      }
-    })
-
-    
-   })
-   
-   
-   router.get('/logout',(req,res)=>{
-    req.session.destroy()
-    res.redirect('/')
-   
-   })
-
-   router.get('/cart',verifylogin,async(req,res)=>{
-    let products=await userHelpers.getCartProducts(req.session.user._id)
-    let total = await userHelpers.getTotalAmount(req.session.user._id);
-  
- 
-    console.log(products);
-    res.render('user/cart',{products,user:req.session.user,total})
-   }
-  )
-  router.get('/add-to-cart/:id',(req,res)=>{
-    console.log('api call')
-    
-    userHelpers.addToCart(req.params.id,req.session.user._id).then((response)=>{
-      res.json({status:true})
-    })
-  })
-
-  router.post('/change-product-quantity', async (req, res) => {
-    const { cartId, proId, count } = req.body;
-
-    try {
-        await userHelpers.changeProductQuantity({ cartId, proId, count }).then(()=>{
-        
-        })
-        res.json({ success: true });
-    } catch (error) {
-        console.error('Error changing product quantity:', error);
-        res.json({ success: false, message: 'Error updating quantity' });
-    }
-
-}),
-router.post('/remove-from-cart', async (req, res) => {
-  const { cartId, proId } = req.body;
-
+/* -------------------- HOME PAGE -------------------- */
+router.get("/", async (req, res) => {
   try {
-      // Remove the item from the cart using the helper function
-      await userHelpers.removeFromCart(cartId, proId);
-      res.json({ success: true });
-  } catch (error) {
-      console.error('Error removing item from cart:', error);
-      res.json({ success: false, message: 'Error removing item' });
+    const user = req.session.user;
+    let cartCount = null;
+
+    if (user && user._id) {
+      cartCount = await userHelpers.getCartCount(user._id);
+    }
+
+    const products = await productHelpers.getAllProducts();
+    res.render("index", { products, user, cartCount });
+  } catch (err) {
+    console.error("❌ Error loading home page:", err);
+    res.status(500).send("Internal Server Error");
   }
 });
-// GET Checkout Page
-router.get('/place-order', verifylogin, async (req, res) => {
+
+/* -------------------- LOGIN -------------------- */
+router.get("/login", (req, res) => {
+  if (req.session.userLoggedIn) return res.redirect("/");
+  res.render("user/login", { loginErr: req.session.userErr });
+  req.session.userErr = false;
+});
+
+/* -------------------- SIGNUP -------------------- */
+router.get("/signup", (req, res) => {
+  res.render("user/signup");
+});
+
+/* -------------------- SIGNUP POST -------------------- */
+router.post("/sign", async (req, res) => {
+  try {
+    const user = await userHelpers.doSignup(req.body);
+    req.session.userLoggedIn = true;
+    req.session.user = user;
+    res.redirect("/");
+  } catch (err) {
+    console.error("❌ Signup error:", err);
+    res.status(500).send("Signup Failed");
+  }
+});
+
+/* -------------------- LOGIN POST -------------------- */
+router.post("/login", async (req, res) => {
+  try {
+    const response = await userHelpers.doLogin(req.body);
+    if (response.status) {
+      req.session.userLoggedIn = true;
+      req.session.user = response.user;
+      res.redirect("/");
+    } else {
+      req.session.userErr = true;
+      res.redirect("/login");
+    }
+  } catch (err) {
+    console.error("❌ Login error:", err);
+    res.status(500).send("Login Failed");
+  }
+});
+
+/* -------------------- LOGOUT -------------------- */
+router.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/");
+  });
+});
+
+/* -------------------- CART PAGE -------------------- */
+router.get("/cart", verifyLogin, async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const products = await userHelpers.getCartProducts(userId);
+    const total = await userHelpers.getTotalAmount(userId);
+    res.render("user/cart", { products, user: req.session.user, total });
+  } catch (err) {
+    console.error("❌ Error loading cart:", err);
+    res.status(500).send("Error loading cart");
+  }
+});
+
+/* -------------------- ADD TO CART -------------------- */
+router.get("/add-to-cart/:id", verifyLogin, async (req, res) => {
+  try {
+    await userHelpers.addToCart(req.params.id, req.session.user._id);
+    res.json({ status: true });
+  } catch (err) {
+    console.error("❌ Error adding to cart:", err);
+    res.json({ status: false });
+  }
+});
+
+/* -------------------- CHANGE PRODUCT QUANTITY -------------------- */
+router.post("/change-product-quantity", async (req, res) => {
+  try {
+    await userHelpers.changeProductQuantity(req.body);
+    res.json({ success: true });
+  } catch (error) {
+    console.error("❌ Error changing product quantity:", error);
+    res.json({ success: false, message: "Error updating quantity" });
+  }
+});
+
+/* -------------------- REMOVE FROM CART -------------------- */
+router.post("/remove-from-cart", async (req, res) => {
+  try {
+    await userHelpers.removeFromCart(req.body.cartId, req.body.proId);
+    res.json({ success: true });
+  } catch (error) {
+    console.error("❌ Error removing item from cart:", error);
+    res.json({ success: false, message: "Error removing item" });
+  }
+});
+
+/* -------------------- CHECKOUT PAGE -------------------- */
+router.get("/place-order", verifyLogin, async (req, res) => {
   try {
     const total = await userHelpers.getTotalAmount(req.session.user._id);
-    res.render('user/place-order', { total, user: req.session.user });
+    res.render("user/place-order", {
+      total,
+      user: req.session.user,
+      RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID, // ✅ Pass Razorpay Key to frontend
+    });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to load checkout page' });
+    console.error("❌ Error loading checkout page:", err);
+    res.status(500).json({ error: "Failed to load checkout page" });
   }
 });
 
-// POST Place Order
-router.post('/place-order', async (req, res) => {
+/* -------------------- PLACE ORDER -------------------- */
+router.post("/place-order", async (req, res) => {
   try {
-    const products = await userHelpers.getCartProductList(req.body.userId);
-    const totalPrice = await userHelpers.getTotalAmount(req.body.userId);
+    const userId = req.body.userId;
+    if (!userId || userId.length !== 24) {
+      return res.status(400).json({ error: "Invalid User ID" });
+    }
+
+    const products = await userHelpers.getCartProductList(userId);
+    const totalPrice = await userHelpers.getTotalAmount(userId);
     const orderId = await userHelpers.placeOrder(req.body, products, totalPrice);
 
-    if (req.body['payment-method'] === 'COD') {
-      res.json({ codSuccess: true });
+    if (req.body["payment-method"] === "COD") {
+      // ✅ COD → Direct success
+      return res.json({ codSuccess: true });
     } else {
+      // ✅ Online payment → Generate Razorpay order
       const razorpayOrder = await userHelpers.generateRazorpay(orderId, totalPrice);
-      // Return the MongoDB orderId along with the Razorpay order
-      res.json({ razorpayOrder, orderId:orderId.toString() });
+      return res.json({
+        razorpayOrder,
+        orderId: orderId.toString(),
+        RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID, // ✅ Send key to frontend too
+      });
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Order creation failed' });
+    console.error("❌ Order placement failed:", err);
+    res.status(500).json({ error: "Order creation failed" });
   }
 });
 
+/* -------------------- ORDER SUCCESS PAGE -------------------- */
+router.get("/order-success", verifyLogin, (req, res) => {
+  res.render("user/order-success", { user: req.session.user });
+});
 
-// GET Order Success Page
-router.get('/order-success', verifylogin, async (req, res) => {
+/* -------------------- ORDERS PAGE -------------------- */
+router.get("/orders", verifyLogin, async (req, res) => {
   try {
-    
-    res.render('user/order-success', { user: req.session.user });
+    const orders = await userHelpers.getUserOrders(req.session.user._id);
+    res.render("user/orders", { user: req.session.user, orders });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to load order success page' });
+    console.error("❌ Error fetching orders:", err);
+    res.status(500).send("Error loading orders");
   }
 });
-router.get('/orders',async(req,res)=>{
-  const orders = await userHelpers.getUserOrders(req.session.user._id);
-  res.render('user/orders', { user: req.session.user, orders })
-})
 
-router.get('/view-order-products/:id',async(req,res)=>{
-  let products=await userHelpers.getOrderProducts(req.params.id)
-  res.render('user/view-order-products',{user:req.session.user._id,products})
-})
+/* -------------------- VIEW ORDER PRODUCTS -------------------- */
+router.get("/view-order-products/:id", verifyLogin, async (req, res) => {
+  try {
+    const products = await userHelpers.getOrderProducts(req.params.id);
+    res.render("user/view-order-products", { user: req.session.user, products });
+  } catch (err) {
+    console.error("❌ Error fetching order products:", err);
+    res.status(500).send("Error loading order products");
+  }
+});
 
-// POST Verify Payment
-router.post('/verify-payment', async (req, res) => {
+/* -------------------- VERIFY PAYMENT -------------------- */
+router.post("/verify-payment", async (req, res) => {
   try {
     const paymentDetails = {
       payment_id: req.body.razorpay_payment_id,
-      order_id: req.body.razorpay_order_id, // Razorpay order_id
+      order_id: req.body.razorpay_order_id,
       signature: req.body.razorpay_signature,
     };
 
-    console.log('Payment Details:', paymentDetails);
-
     await userHelpers.verifyPayment(paymentDetails);
-
-    // Assuming you are passing the MongoDB orderId in the AJAX response
-    const mongoOrderId = req.body.mongo_order_id; // This should be the actual MongoDB ObjectId
-    console.log('MongoDB Order ID:', mongoOrderId);
-
-    await userHelpers.changePaymentStatus(mongoOrderId);
+    await userHelpers.changePaymentStatus(req.body.mongo_order_id);
 
     res.json({ status: true });
   } catch (err) {
-    console.error('Payment verification failed:', err);
-    res.status(500).json({ status: false, error: 'Payment verification failed' });
+    console.error("❌ Payment verification failed:", err);
+    res.status(500).json({ status: false, error: "Payment verification failed" });
   }
 });
 
-
-
-
-
-
-  
 module.exports = router;

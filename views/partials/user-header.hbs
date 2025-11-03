@@ -1,35 +1,104 @@
 <header style="position: sticky; top: 0; z-index: 1000;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-image: url('/images/c10.jpg'); background-size: cover;">
-        <a class="navbar-brand" style="font-style: italic ; color:white" href="/">Shopping cart <i class="bi bi-bag-fill"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+  <nav 
+    class="navbar navbar-expand-lg navbar-dark" 
+    style="
+      background: linear-gradient(
+        rgba(0, 0, 0, 0.65), 
+        rgba(0, 0, 0, 0.65)
+      ), 
+      url('/images/c10.jpg') center/cover no-repeat;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    "
+  >
+    <a 
+      class="navbar-brand fw-bold" 
+      style="font-style: italic; color: #fff; letter-spacing: 1px;" 
+      href="/"
+    >
+      Shopping Cart <i class="bi bi-bag-fill"></i>
+    </a>
+
+    <button 
+      class="navbar-toggler border-0" 
+      type="button" 
+      data-toggle="collapse" 
+      data-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a 
+            class="nav-link" 
+            style="font-style: italic; color: #f8f9fa; transition: 0.3s;" 
+            href="/"
+            onmouseover="this.style.color='#ffc107'"
+            onmouseout="this.style.color='#f8f9fa'"
+          >
+            Products <i class="bi bi-box-fill"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a 
+            class="nav-link" 
+            style="font-style: italic; color: #f8f9fa; transition: 0.3s;" 
+            href="/cart"
+            onmouseover="this.style.color='#ffc107'"
+            onmouseout="this.style.color='#f8f9fa'"
+          >
+            Cart <i class="bi bi-cart"></i>
+            <span 
+              class="badge badge-success ml-1" 
+              id="cart-count"
+              style="background-color: #28a745;"
+            >
+              {{this.cartCount}}
+            </span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right Side Dropdown -->
+      <div class="dropdown ml-auto">
+        <button 
+          class="btn btn-outline-light dropdown-toggle" 
+          style="font-style: italic; border-radius: 10px 30px; padding: 8px 16px;"
+          type="button" 
+          id="dropdownMenuButton" 
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false"
+        >
+          {{#if user}}
+            <i class="bi bi-person-circle"></i> {{user.Name}}
+          {{else}}
+            <i class="bi bi-person"></i> Account
+          {{/if}}
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" style="font-style: italic ; color:white" href="/">Products  <i class="bi bi-box-fill"></i> <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="font-style: italic ; color:white" href="/cart">Carts <i class="bi bi-cart"></i> <span class="badge badge-success" id="cart-count">{{this.cartCount}}</span></a>
-                </li>
-            </ul>
-            <div class="dropdown" style="border: radius 25px; ; color:white">
-                <button class="btn btn-secondary dropdown-toggle flex-right" style="font-style: italic;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{#if user}}
-                    {{user.Name}}
-                    {{else}}
-                    Account
-                    {{/if}}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border-radius:10px 40px ; ">
-                    {{#if user}}
-                    <a class="dropdown-item" href="/logout">Logout</a>
-                    {{else}}
-                    <a class="dropdown-item" href="/login">Login</a>
-                    {{/if}}
-                </div>
-            </div>
+        <div 
+          class="dropdown-menu dropdown-menu-right shadow-lg" 
+          aria-labelledby="dropdownMenuButton" 
+          style="border-radius: 12px; min-width: 150px;"
+        >
+          {{#if user}}
+            <a class="dropdown-item" href="/logout">
+              <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+          {{else}}
+            <a class="dropdown-item" href="/login">
+              <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+          {{/if}}
         </div>
-    </nav>
+      </div>
+    </div>
+  </nav>
 </header>

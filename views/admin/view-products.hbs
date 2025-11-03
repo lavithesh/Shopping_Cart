@@ -1,45 +1,94 @@
-<section style="background-image: url('/images/p7.jpg'); width: 100%; height: 100vh; background-size: cover; background-position: center;">
-    <div class="container mt-1">
-        <div class="row">
-        <a href="/admin/add-products" style=" border-radius:40px 10px" class="btn btn-success ml-auto">Add products</a>
-        </div>
-        <table class="table mt-5" id="productsTable">
-  <thead>
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">Name</th>
-      <th scope="col">Category</th>
-      <th scope="col">Price</th>
-      <th scope="col">Description</th>
-      <th>Image</th>
-      <th>Options</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each products}}
-    <tr>
-      <th scope="row">1</th>
-      
-      <td>{{this.Name}}</td>
-      <td>{{this.Category}}</td>
-      <td>{{this.Price}}</td>
-      <td>{{this.Description}}</td>
-      <td><img style="width: 50px;height:50px" src="/product-images/{{this._id}}.png" alt=""></td>
-      <td>
-        <a href="/admin/edit-products/{{this._id}}" class="btn btn-primary" style="border-radius: 40px; 10px" >edit</a>
-        <a href="/admin/delete-products/{{this._id}} " class="btn btn-danger " style="border-radius: 40px; 10px" onclick="return confirm('are you sure{{this.Name}} ?')">delete</a>
-        
-      </td>
-   
-    </tr>
-    {{/each}}
-
-  </tbody>
-</table>
+<section 
+  style="
+    background-image: url('/images/p7.jpg');
+    width: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  "
+>
+  <div class="container">
+    <!-- Header Row -->
+    <div class="row mb-4">
+      <div class="col text-right">
+        <a 
+          href="/admin/add-products" 
+          class="btn btn-success"
+          style="border-radius: 40px 10px; font-weight: 600;"
+        >
+          <i class="bi bi-plus-circle"></i> Add Product
+        </a>
+      </div>
     </div>
+
+    <!-- Products Table -->
+    <div 
+      class="table-responsive shadow-lg p-3 mb-5 bg-white rounded" 
+      style="border-radius: 20px;"
+    >
+      <table class="table table-hover text-center" id="productsTable">
+        <thead style="background-color: #343a40; color: white;">
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price (₹)</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each products}}
+          <tr>
+            <td>{{@index}}</td>
+            <td style="font-weight: 500;">{{this.Name}}</td>
+            <td>{{this.Category}}</td>
+            <td style="color: green; font-weight: 600;">{{this.Price}}</td>
+            <td>{{this.Description}}</td>
+            <td>
+              <img 
+                src="/product-images/{{this._id}}.png" 
+                alt="Product Image" 
+                style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px;"
+              >
+            </td>
+            <td>
+              <a 
+                href="/admin/edit-products/{{this._id}}" 
+                class="btn btn-primary btn-sm" 
+                style="border-radius: 10px 25px; margin-right: 8px;"
+              >
+                <i class="bi bi-pencil-square"></i> Edit
+              </a>
+              <a 
+                href="/admin/delete-products/{{this._id}}" 
+                class="btn btn-danger btn-sm" 
+                style="border-radius: 10px 25px;"
+                onclick="return confirm('Are you sure you want to delete {{this.Name}}?')"
+              >
+                <i class="bi bi-trash3"></i> Delete
+              </a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
+
+<!-- DataTables Script -->
 <script>
-  $(function () {
-    $('#productsTable').DataTable();
+  $(document).ready(function () {
+    $('#productsTable').DataTable({
+      paging: true,
+      searching: true,
+      ordering: true,
+      pageLength: 5,
+      lengthChange: false
+    });
   });
 </script>

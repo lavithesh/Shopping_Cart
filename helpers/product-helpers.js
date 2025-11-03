@@ -1,55 +1,81 @@
 const connectdb = require("../config/connection");
-var collection = require("../config/collection");
-var ObjectId = require("mongodb").ObjectId;
+const collection = require("../config/collection");
+const { ObjectId } = require("mongodb");
 
 module.exports = {
-  addProduct: (product, callback) => {
-    connectdb
-      .get()
-      .collection("product")
-      .insertOne(product)
-      .then((data) => {
-        console.log(data);
-        callback(data.insertedId);
-      });
-  },
-  getAllProducts: () => {
-    return new Promise(async (resolve, reject) => {
-      let products = await connectdb
-        .get()
+  /* ---------------- ADD PRODUCT ---------------- */
+  addProduct: async (product, callback) => {
+    try {
+      const db = connectdb.get();
+      const result = await db
         .collection(collection.PRODUCT_COLLECTION)
-        .find()
+        .insertOne(product);
+
+      console.log("✅ Product added successfully:", result.insertedId);
+      if (callback) callback(result.insertedId);
+      return result.insertedId;
+    } catch (err) {
+      console.error("❌ Error adding product:", err);
+      if (callback) callback(null);
+      throw err;
+    }
+  },
+
+  /* ---------------- GET ALL PRODUCTS ---------------- */
+  getAllProducts: async () => {
+    try {
+      const db = connectdb.get();
+      const products = await db
+        .collection(collection.PRODUCT_COLLECTION)
+        .find({})
+        .sort({ _id: -1 }) // Show latest added first
         .toArray();
 
-      resolve(products);
-    });
+      console.log(`📦 Retrieved ${products.length} products`);
+      return products;
+    } catch (err) {
+      console.error("❌ Error fetching products:", err);
+      return [];
+    }
   },
-  deleteProducts: (prodId) => {
-    return new Promise((resolve, reject) => {
-      connectdb
-        .get()
+
+  /* ---------------- DELETE PRODUCT ---------------- */
+  deleteProducts: async (prodId) => {
+    try {
+      const db = connectdb.get();
+      const result = await db
         .collection(collection.PRODUCT_COLLECTION)
-        .deleteOne({ _id: new ObjectId(prodId) })
-        .then((response) => {
-          resolve(response);
-        });
-    });
+        .deleteOne({ _id: new ObjectId(prodId) });
+
+      console.log("🗑️ Product deleted successfully:", prodId);
+      return result;
+    } catch (err) {
+      console.error("❌ Error deleting product:", err);
+      throw err;
+    }
   },
-  getProductDetails: (proId) => {
-    return new Promise((resolve, reject) => {
-      connectdb
-        .get()
+
+  /* ---------------- GET PRODUCT DETAILS ---------------- */
+  getProductDetails: async (proId) => {
+    try {
+      const db = connectdb.get();
+      const product = await db
         .collection(collection.PRODUCT_COLLECTION)
-        .findOne({ _id: new ObjectId(proId) })
-        .then((response) => {
-          resolve(response);
-        });
-    });
+        .findOne({ _id: new ObjectId(proId) });
+
+      if (!product) console.warn("⚠️ No product found with ID:", proId);
+      return product;
+    } catch (err) {
+      console.error("❌ Error fetching product details:", err);
+      throw err;
+    }
   },
-  updateProducts: (proId, prodDetails) => {
-    return new Promise((resolve, reject) => {
-      connectdb
-        .get()
+
+  /* ---------------- UPDATE PRODUCT ---------------- */
+  updateProducts: async (proId, prodDetails) => {
+    try {
+      const db = connectdb.get();
+      const result = await db
         .collection(collection.PRODUCT_COLLECTION)
         .updateOne(
           { _id: new ObjectId(proId) },
@@ -61,10 +87,13 @@ module.exports = {
               Description: prodDetails.Description,
             },
           }
-        )
-        .then((response) => {
-          resolve(response);
-        });
-    });
+        );
+
+      console.log("✅ Product updated successfully:", proId);
+      return result;
+    } catch (err) {
+      console.error("❌ Error updating product:", err);
+      throw err;
+    }
   },
 };

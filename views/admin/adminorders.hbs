@@ -1,22 +1,27 @@
-<section>
-    <div class="container mt-5">
-        <div class="row">
-        {{#each products}}
-        <div class="col-md-3 p-3">
-            <div class="card" style="width: 15rem; height:24rem;">
-                <img class="card-img-top"
-                src="/product-images/{{this.productDetails._id}}.png"
-                alt="Card image cap"
-                style="height: 12rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{this.productDetails.Name}}</h5>
-                    <p class="card-text">Rs.{{this.productDetails.Price}}</p>
-                    <p class="card-text">Quantity.{{this.quantity}}</p>
-                    <p class="card-text">{{this.productDetails.Description}}</p>
-                </div>
-            </div>
+<section style="background-image: url('/images/c6.jpeg'); background-size: cover; background-position: center; width: 100%; min-height: 100vh; padding: 40px 0;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="font-style: italic; color: white;">Ordered Products <i class="bi bi-basket2-fill"></i></h2>
+
+    <div class="row justify-content-center">
+      {{#each products}}
+      <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+        <div class="card shadow-lg border-0" style="border-radius: 15px; overflow: hidden; background: rgba(255, 255, 255, 0.9); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <img 
+            class="card-img-top" 
+            src="/product-images/{{this.productDetails._id}}.png" 
+            alt="Product Image" 
+            style="height: 200px; object-fit: cover; border-bottom: 3px solid #007bff;"
+          >
+
+          <div class="card-body text-center">
+            <h5 class="card-title" style="font-style: italic; color: #2c3e50;">{{this.productDetails.Name}}</h5>
+            <p class="card-text mb-1" style="color: #16a085;">Rs. {{this.productDetails.Price}}</p>
+            <p class="card-text mb-1">Quantity: {{this.quantity}}</p>
+            <p class="card-text text-muted" style="font-size: 14px;">{{this.productDetails.Description}}</p>
+          </div>
         </div>
-        {{/each}}
-        </div>
+      </div>
+      {{/each}}
     </div>
+  </div>
 </section>
