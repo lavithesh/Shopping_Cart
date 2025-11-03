@@ -1,45 +1,97 @@
-<h1 align="center">Hi 👋, I'm Lavithesh</h1>
-<h3 align="center">A passionate developer from India</h3>
-<img align="right" alt="coding" width="400" src="https://github.com/user-attachments/assets/3d246b34-c665-4b76-a39e-e185686dbdb5">
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=lavithesh&label=Profile%20views&color=0e75b6&style=flat" alt="lavithesh" /> </p>
+<h1 align="center">🛒 Shopping Cart</h1>
+<h3 align="center">An E-Commerce Web Application built with Node.js, Express, MongoDB, and Handlebars</h3>
 
-<p align="left"> <a href="https://twitter.com/@lavithesh67291" target="blank"><img src="https://img.shields.io/twitter/follow/@lavithesh67291?logo=twitter&style=for-the-badge" alt="@lavithesh67291" /></a> </p>
-
-- 🔭 I’m currently working on [Shoping-Cart](https://github.com/lavithesh/Shopping_Cart.git)
-
-- 🌱 I’m currently learning **Javascript,MongoDB,Express,Handlebars**
-
-- 👨‍💻 All of my projects are available at [https://github.com/lavithesh/Shopping_Cart.git](https://github.com/lavithesh/Shopping_Cart.git)
-
-- 💬 Ask me about **Nodejs,**
-
-- 📫 How to reach me **lavithesh7@gmail.com**
-
-- ⚡ Fun fact **I am Funny**
-
-
-<h1 >Login Page</h1>
-
-
-![img alt](https://github.com/lavithesh/Shopping_Cart/blob/main/Screenshot%20(232).png?raw=true)
-
-<h1 style="font-family: Arial;" >Home Page</h1>
-
-![img alt](https://github.com/lavithesh/Shopping_Cart/blob/main/Screenshot%20(226).png?raw=true)
-
-<h1 align="center">Razorpay integration</h1>
-
-![img alt](https://github.com/lavithesh/Shopping_Cart/blob/main/Screenshot%20(209).png?raw=true)
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://twitter.com/@lavithesh67291" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="@lavithesh67291" height="30" width="40" /></a>
-<a href="https://linkedin.com/in/lavithesh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="lavithesh" height="30" width="40" /></a>
-<a href="https://stackoverflow.com/users/lavithesh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/stack-overflow.svg" alt="lavithesh" height="30" width="40" /></a>
-<a href="https://instagram.com/lavithesh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="lavithesh" height="30" width="40" /></a>
+<p align="center">
+  <a href="https://shopping-cart-frvu.onrender.com" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Demo-Visit%20Now-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo" />
+  </a>
 </p>
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://dart.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="40" height="40"/> </a> <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="40" height="40"/> </a> <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> <a href="https://flutter.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="flutter" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a> <a href="https://opencv.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="opencv" width="40" height="40"/> </a> <a href="https://www.photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/photoshop/photoshop-line.svg" alt="photoshop" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://unity.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/unity3d/unity3d-icon.svg" alt="unity" width="40" height="40"/> </a> </p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3d246b34-c665-4b76-a39e-e185686dbdb5" width="400" alt="Coding">
+</p>
+
+---
+
+## 🚀 Project Overview
+
+**Shopping Cart** is a full-stack web application built using:
+- **Node.js** for backend logic  
+- **Express.js** for server routing  
+- **MongoDB** for database storage  
+- **Handlebars (hbs)** for templating  
+- **Razorpay API** for payment integration  
+
+🔗 **Live Website:** [https://shopping-cart-frvu.onrender.com](https://shopping-cart-frvu.onrender.com)
+
+---
+
+## 🧠 Features
+
+- 🧍 User authentication (Signup / Login)
+- 🛍️ Product browsing and cart management
+- 💳 Secure payments with **Razorpay**
+- 🧾 Order management
+- 🧑‍💼 Admin dashboard to manage products and users
+- 🌐 Hosted using **Render**
+
+---
+
+## 🖼️ Screenshots
+
+### 🔐 Login Page
+![Login Page](https://github.com/lavithesh/Shopping_Cart/blob/main/Screenshot%20(232).png?raw=true)
+
+### 🏠 Home Page
+![Home Page](https://github.com/lavithesh/Shopping_Cart/blob/main/Screenshot%20(226).png?raw=true)
+
+### 💰 Razorpay Integration
+![Razorpay](https://github.com/lavithesh/Shopping_Cart/blob/main/Screenshot%20(209).png?raw=true)
+
+---
+
+## ⚙️ How to Run Locally
+
+Follow these steps to run the project on your local system 👇
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/lavithesh/Shopping_Cart.git
+cd Shopping_Cart
+
+2️⃣ Install dependencies
+npm install
+
+3️⃣ Create .env file
+
+In the root folder, create a file named .env and add:
+MONGO_URL=your_mongodb_connection_string
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+
+4️⃣ Start the server
+npm start
+The app will run at 👉 http://localhost:3002
+
+🧰 Tech Stack
+Category	Technology
+Frontend	Handlebars (hbs), Bootstrap
+Backend	Node.js, Express.js
+Database	MongoDB Atlas
+Payment	Razorpay API
+Hosting	Render
+Version Control	Git & GitHub
+
+🔗 Connect with Me
+<p align="left"> <a href="https://twitter.com/@lavithesh67291" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="@lavithesh67291" height="30" width="40" /></a> <a href="https://linkedin.com/in/lavithesh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="lavithesh" height="30" width="40" /></a> <a href="https://stackoverflow.com/users/lavithesh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/stack-overflow.svg" alt="lavithesh" height="30" width="40" /></a> <a href="https://instagram.com/lavithesh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="lavithesh" height="30" width="40" /></a> </p>
+
+🛠️ Languages and Tools
+<p align="left"> <a href="https://nodejs.org" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/></a> <a href="https://expressjs.com" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/></a> <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/></a> <a href="https://www.javascript.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/></a> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/></a> <a href="https://www.python.org" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/></a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"><img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/></a> </p>
+
+⭐ If you like this project, give it a star on GitHub!
+
+🚀 Live App: https://shopping-cart-frvu.onrender.com
+
 
 <p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=lavithesh&show_icons=true&locale=en&layout=compact" alt="lavithesh" /></p>
 
