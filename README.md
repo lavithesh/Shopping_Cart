@@ -58,21 +58,23 @@ Follow these steps to run the project on your local system 👇
 ```bash
 git clone https://github.com/lavithesh/Shopping_Cart.git
 cd Shopping_Cart
-
+```
 2️⃣ Install dependencies
+```bash
 npm install
-
+```
 3️⃣ Create .env file
-
+```bash
 In the root folder, create a file named .env and add:
 MONGO_URL=your_mongodb_connection_string
 RAZORPAY_KEY_ID=your_razorpay_key_id
 RAZORPAY_KEY_SECRET=your_razorpay_key_secret
-
+```
 4️⃣ Start the server
+```bash
 npm start
 The app will run at 👉 http://localhost:3002
-
+```
 🧰 Tech Stack
 Category	Technology
 Frontend	Handlebars (hbs), Bootstrap
@@ -93,8 +95,4 @@ Version Control	Git & GitHub
 🚀 Live App: https://shopping-cart-frvu.onrender.com
 
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=lavithesh&show_icons=true&locale=en&layout=compact" alt="lavithesh" /></p>
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=lavithesh&show_icons=true&locale=en" alt="lavithesh" /></p>
-
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=lavithesh&" alt="lavithesh" /></p>
