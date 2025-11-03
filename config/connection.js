@@ -2,38 +2,36 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
-const state = {
-  db: null,
-};
+const state = { db: null };
 
-/**
- * Connect to MongoDB Atlas using the native MongoDB driver.
- * @param {Function} done - callback function to signal connection status
- */
 module.exports.connect = async (done) => {
-  const url = process.env.MONGODB_URI; // Your Atlas or local Mongo URI
-  const dbName = "ShoppingCart"; // Your database name
+  // 🔹 Use correct environment variable key
+  const url = process.env.MONGO_URL; // matches your Render env variable
+  const dbName = "ShoppingCart"; // your database name
 
   if (!url) {
-    console.error("❌ MONGODB_URI not found in .env file");
+    console.error("❌ MONGO_URL not found in environment variables");
     return done(new Error("Missing MongoDB URI"));
   }
 
   try {
-    const client = await MongoClient.connect(url);
+    // ✅ Proper TLS setup for Render + MongoDB Atlas
+    const client = await MongoClient.connect(url, {
+      tls: true,
+      tlsAllowInvalidCertificates: true, // avoids strict Render TLS issues
+      minTLSVersion: "TLSv1.2",
+      serverSelectionTimeoutMS: 10000,
+    });
+
     state.db = client.db(dbName);
-    console.log("✅ MongoDB Connected Successfully (Native Driver)");
+    console.log("✅ MongoDB Connected Successfully (Render + Atlas)");
     done();
   } catch (err) {
-    console.error("❌ MongoDB Connection Failed:", err);
+    console.error("❌ MongoDB Connection Failed:", err.message);
     done(err);
   }
 };
 
-/**
- * Get the connected database instance.
- * @returns {import('mongodb').Db} The connected MongoDB database
- */
 module.exports.get = function () {
   if (!state.db) {
     console.error("❌ Database not connected. Call connect() first.");
