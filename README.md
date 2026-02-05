@@ -17,7 +17,7 @@
 - **Handlebars (hbs)** for templating  
 - **Razorpay API** for payment integration  
 
-🔗 **Live Website:** [https://shopping-cart-frvu.onrender.com](https://shopping-cart-frvu.onrender.com)
+
 
 ---
 
@@ -87,7 +87,7 @@ Version Control	Git & GitHub
 
 ⭐ If you like this project, give it a star on GitHub!
 
-🚀 Live App: https://shopping-cart-frvu.onrender.com
+
 
 
 
