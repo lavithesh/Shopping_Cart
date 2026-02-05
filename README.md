@@ -1,11 +1,6 @@
 <h1 align="center">🛒 Shopping Cart</h1>
 <h3 align="center">An E-Commerce Web Application built with Node.js, Express, MongoDB, and Handlebars</h3>
 
-<p align="center">
-  <a href="https://shopping-cart-frvu.onrender.com" target="_blank">
-    <img src="https://img.shields.io/badge/Live%20Demo-Visit%20Now-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo" />
-  </a>
-</p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/3d246b34-c665-4b76-a39e-e185686dbdb5" width="400" alt="Coding">
